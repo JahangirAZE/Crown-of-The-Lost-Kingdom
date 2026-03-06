@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Crown of the Lost Kingdom</title>
+      <link ref="stylesheet" href="style.css">
+  </head>
+  <body>
+      <div id="gameContainer">
+          <canvas id="gameCanvas" width="1200" height="700"></canvas>
+          
+          <!-- UI Overlay -->
+          <div id="uiOverlay">
+              <!-- Stats Panel -->
+              <div id="statsPanel">
+                  <div class="stat-bar">
+                      <div class="stat-label">❤️ Health: <span id="healthText">100/100</span></div>
+                      <div class="bar-container">
+                          <div id="healthBar" class="bar-fill health-bar" style="width: 100%"></div>
+                      </div>
+                  </div>
+                  <div class="stat-bar">
+                      <div class="stat-label">⚡ Stamina: <span id="staminaText">100/100</span></div>
+                      <div class="bar-container">
+                          <div id="staminaBar" class="bar-fill stamina-bar" style="width: 100%"></div>
+                      </div>
+                  </div>
+                  <div class="stat-bar">
+                      <div class="stat-label">⭐ Level <span id="levelText">1</span> - EXP: <span id="expText">0/100</span></div>
+                      <div class="bar-container">
+                          <div id="expBar" class="bar-fill exp-bar" style="width: 0%"></div>
+                      </div>
+                  </div>
+                  <div class="stat-bar">
+                      <div class="stat-label">💰 Gold: <span id="goldText">0</span></div>
+                  </div>
+              </div>
+
+              <!-- Quest Tracker -->
+              <div id="questTracker">
+                  <div class="quest-title">📜 Current Quest</div>
+                  <div id="questObjectives">
+                      <div class="quest-objective">→ Explore the Green Forest</div>
+                  </div>
+              </div>
+
+              <!-- Quick Bar -->
+              <div id="quickBar">
+                  <div class="quick-slot active" data-slot="0">
+                      <span>⚔️</span>
+                      <div class="slot-key">1</div>
+                  </div>
+                  <div class="quick-slot" data-slot="1">
+                      <span id="potion1">🧪</span>
+                      <div class="slot-key">2</div>
+                  </div>
+                  <div class="quick-slot" data-slot="2">
+                      <span id="potion2"></span>
+                      <div class="slot-key">3</div>
+                  </div>
+              </div>
+
+              <!-- Controls Guide -->
+              <div id="controlsGuide">
+                  <div class="control-row"><span class="key">←→</span> Move | <span class="key">SPACE</span> Jump | <span class="key">Z</span> Attack</div>
+                  <div class="control-row"><span class="key">X</span> Dash | <span class="key">E</span> Interact | <span class="key">I</span> Inventory</div>
+                  <div class="control-row"><span class="key">2</span> Health Potion | <span class="key">ESC</span> Pause</div>
+              </div>
+          </div>
+
+          <!-- Dialog Box -->
+          <div id="dialogBox">
+              <div class="dialog-speaker" id="dialogSpeaker"></div>
+              <div class="dialog-text" id="dialogText"></div>
+              <div class="dialog-choices" id="dialogChoices"></div>
+          </div>
+
+          <!-- Inventory Panel -->
+          <div id="inventoryPanel">
+              <div class="inventory-header">⚔️ INVENTORY ⚔️</div>
+              <button class="inventory-close" onclick="game.closeInventory()">Close [I]</button>
+              <div class="inventory-grid" id="inventoryGrid"></div>
+              <div style="color: #d4af37; text-align: center; margin-top: 20px;">
+                  Click items to use or equip
+              </div>
+          </div>
+
+          <!-- Main Menu -->
+          <div id="mainMenu">
+              <div class="menu-title">
+                  👑 CROWN OF THE LOST KINGDOM 👑
+              </div>
+              <button class="menu-button" onclick="game.startNewGame()">New Game</button>
+              <button class="menu-button" onclick="game.continueGame()">Continue</button>
+              <button class="menu-button" onclick="game.showControls()">Controls</button>
+          </div>
+
+          <!-- Pause Menu -->
+          <div id="pauseMenu">
+              <div class="menu-title" style="font-size: 32px; margin-bottom: 30px;">PAUSED</div>
+              <button class="menu-button" onclick="game.resumeGame()">Resume</button>
+              <button class="menu-button" onclick="game.openInventory()">Inventory</button>
+              <button class="menu-button" onclick="game.saveGame()">Save Game</button>
+              <button class="menu-button" onclick="game.returnToMenu()">Main Menu</button>
+          </div>
+
+          <!-- Game Over Screen -->
+          <div id="gameOverScreen">
+              <div class="game-over-title">💀 GAME OVER 💀</div>
+              <div class="victory-text">The warrior has fallen... but the kingdom's hope remains.</div>
+              <button class="menu-button" onclick="game.respawn()">Respawn</button>
+              <button class="menu-button" onclick="game.returnToMenu()">Main Menu</button>
+          </div>
+
+
+          <!-- Victory Screen -->
+          <div id="victoryScreen">
+              <div class="victory-title">👑 VICTORY! 👑</div>
+              <div class="victory-text">
+                  The emperor has been defeated!<br>
+                  The princess is rescued!<br>
+                  The kingdom is restored to its former glory!<br><br>
+                  <strong>Thank you for playing Crown of the Lost Kingdom!</strong>
+              </div>
+              <button class="menu-button" onclick="game.returnToMenu()">Main Menu</button>
+          </div>
+
+          <!-- Notification -->
+          <div id="notification" id="notification"></div>
+      </div>
+
+      <script src="game.js"></script>
+  </body>
+</html>
